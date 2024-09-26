@@ -11,6 +11,8 @@ char* my_strcpy(char* src, char* dest){
         index  += 1;
         index_dest += 1;
     }
-
+    
+    dest[index_dest] = 0;
+    
     return dest;
 }

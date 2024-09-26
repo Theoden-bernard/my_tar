@@ -9,9 +9,11 @@
 typedef struct s_commutator{
 
     char commutator;
-    void (*func)(char**, char**);
+    int (*func)(char**, char**);
     
 }t_commutator;
+
+struct tar_s;
 
 typedef struct tar_s{
 
@@ -19,7 +21,7 @@ typedef struct tar_s{
     unsigned int begin;
     union{
         
-        union{
+        // union{
 
             struct {
                 
@@ -40,7 +42,7 @@ typedef struct tar_s{
                 char prefix[115];
             };
             
-        };
+        // };
 
         char block[512];
     };

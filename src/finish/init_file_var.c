@@ -1,4 +1,4 @@
-/*fonction qui me permettera de transphere le nom de l'archibe de av vaire un char * archive */
+/*fonction qui me permettera de transphere le nom de l'archibe de av vers un char * archive */
 
 #include "my_tar.h"
 
@@ -37,8 +37,6 @@ char** init_file_var(char** av, char* type, char** fils){
             index += 1;
         }
     }
-    
-    index_fils = 0;
 
     return fils;
 }

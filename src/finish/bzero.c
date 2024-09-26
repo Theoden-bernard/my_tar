@@ -10,7 +10,5 @@ char* my_bzero(char* string, int size){
         index += 1;
     }
 
-    printf("string %s\n\n", string);
-
     return string;
 }

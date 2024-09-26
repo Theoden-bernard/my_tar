@@ -10,9 +10,10 @@ void argument_passer(char* flague, t_commutator* commutator, char** av, int ac){
 
     if(flague[index] == '-'){
 
-        char** archive = malloc(sizeof (char *) * (ac - 2));; // j'alloue des chaine de caractères
+        char** archive = malloc(sizeof (char *) * (ac));; // j'alloue des chaine de caractères
         archive = init_file_var(av, ".tar", archive);
-        char** fils = malloc(sizeof (char *) * (ac - 2)); // j'alloue des chaine de caractères (pas des char) coin coin
+        
+        char** fils = malloc(sizeof (char *) * (ac)); // j'alloue des chaine de caractères (pas des char) coin coin
         fils = init_file_var(av, ".c", fils);
         
         index += 1;
@@ -24,8 +25,12 @@ void argument_passer(char* flague, t_commutator* commutator, char** av, int ac){
 
                 if (flague[index] == tmp_commutator->commutator){
                     
+                    printf("jpp\n");
+
                     tmp_commutator->func(archive, fils);
                     tmp_commutator = commutator;
+
+                    printf("fin jpp\n");
                     break;
 
                 }else{
