@@ -15,7 +15,7 @@ int main(int ac, char** av){
     int compteur = 0;
     while (compteur < ac)
     {
-        printf("debug %d ->\n", compteur);
+        printf("debug %d -> %s\n", compteur, av[compteur]);
         argument_passer(av[compteur], commutator, av, ac);
         compteur++;
     }

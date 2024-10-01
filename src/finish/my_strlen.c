@@ -14,5 +14,5 @@ int my_strlen(char* string){
         index += 1;
     }
 
-    return index;
+    return index + 1;
 }

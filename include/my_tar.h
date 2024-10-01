@@ -7,6 +7,7 @@
 
 #ifdef __linux__
     #include <sys/sysmacros.h>   // For major() and minor() on Linux
+    #include <malloc.h>
 #elif defined(__APPLE__) && defined(__MACH__)
     // macOS should have these in <sys/types.h> or <sys/stat.h>
     #include <sys/types.h>
@@ -33,11 +34,11 @@ char** init_file_var(char**, char*, char**);
 char* my_realloc(char* str, int size);
 int wordlen(char**);
 void write_in_fils_tar(char**, char*);
-struct tar_s* complete_file(char*, int, struct tar_s*, struct tar_s*);
+void complete_file(char*, int, struct tar_s*);
 void my_memset(void*, int, size_t);
 char* int_to_char(int);
 int int_len(int);
 char* convertiseur_base(int, int, int);
 char* my_bzero(char*, int);
-int calcul_checksum(char*);
+int calcul_checksum(struct tar_s*);
 int is_a_tar_file(char* );

@@ -16,13 +16,11 @@ int creat_fils_tar(char** archive, char** fils){
 
         fp = fopen (archive[0], "rw");
         
-        printf("debug\n");
+        // printf("debug\n");
 
         write_in_fils_tar(fils, archive[0]);
-        
+        fclose(fp);   
     }
     
-    fclose(fp);
-
     return 1;
 }

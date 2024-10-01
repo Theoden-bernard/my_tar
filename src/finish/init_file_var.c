@@ -10,27 +10,32 @@ char** init_file_var(char** av, char* type, char** fils){
 
     if (type[1] == 't' && type[2] == 'a' && type[3] == 'r' && type[4] == '\0')
     {
+        // printf("lunette\n");
         while (av[index] != 0 && check_type_file(av[index], type) == 0)
         {
             index += 1;
-            
+            // printf("phone => %s\n", av[index]);
             if (check_type_file(av[index], type) == 1)
-            {   
+            {
                 size = my_strlen(av[index]);
+                // printf("size => %d\n", size);
                 fils[index_fils] = malloc(sizeof(char) * size);
+                // printf("tata => %s\n", av[index]);
                 my_strcpy(av[index], fils[index_fils]);
                 index_fils += 1;
             }
+            
         }
         
     }else{
-        
+        // printf("AV[%d] = = > %s\n", index, av[index]);
         while (av[index] != 0)
         {   
             if (check_type_file(av[index], type) == 1)
             {   
                 size = my_strlen(av[index]);
                 fils[index_fils] = malloc(sizeof(char) * size + 1);
+                // printf("tatu\n");
                 my_strcpy(av[index], fils[index_fils]);
                 index_fils += 1;
             }
@@ -38,5 +43,6 @@ char** init_file_var(char** av, char* type, char** fils){
         }
     }
 
+    fils[index_fils] = NULL;
     return fils;
 }

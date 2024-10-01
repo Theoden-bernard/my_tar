@@ -4,15 +4,21 @@
 
 char* convertiseur_base(int base_10, int base, int size){
 
-    int index = size - 2;
+    int index = size;
     // char* result_base = malloc(sizeof(char) * 1);
-    char* storage = malloc(sizeof(char) * size);
+    char* storage = malloc(sizeof(char) * (size + 1));
     int result = 0;
     int last_number = 0;
 
     // printf("before base 10 = %d\n", base_10);
 
     my_bzero(storage, index);
+    
+    storage[index] = '\0';
+
+    index -= 1;
+
+    printf("patate\n");
 
     while (base_10 != 0)
     {
