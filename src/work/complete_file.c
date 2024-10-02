@@ -1,22 +1,42 @@
 #include "my_tar.h"
 
-static void print_tar_struct(struct tar_s* tar_struct){
+void write_fd_archive(int fd, char *data, int size){
 
-    printf("%s\n", tar_struct->name);
-    printf("%s\n", tar_struct->mode);
-    printf("%s\n", tar_struct->unid);
-    printf("%s\n", tar_struct->gid);
-    printf("%s\n", tar_struct->size);
-    printf("%s\n", tar_struct->mtime);
-    printf("%s\n", tar_struct->check);
-    printf("%d\n", tar_struct->link);
-    printf("%s\n", tar_struct->link_name);
-    printf("%s\n", tar_struct->ustar);
-    printf("%s\n", tar_struct->owner);
-    printf("%s\n", tar_struct->group);
-    printf("%s\n", tar_struct->major);
-    printf("%s\n", tar_struct->minor);
-    printf("%s\n", tar_struct->prefix);
+    printf("data = %s size = %d\n",data, size);
+    if (write(fd, data, size) == size){
+
+        // write(fd, data, sizeof(data));
+        printf("sortie\n");
+        // exit(1);
+    }else{
+
+        printf("exit\n");
+        exit(-1);
+    }
+
+}
+
+
+
+static void print_tar_struct(struct tar_s* tar_struct, int fd_archive){
+
+    printf("name\n");
+    write_fd_archive(fd_archive, tar_struct->name, sizeof(tar_struct->name));
+    printf("mode\n");
+    write_fd_archive(fd_archive, tar_struct->mode, sizeof(tar_struct->mode));
+    write_fd_archive(fd_archive, tar_struct->unid, sizeof(tar_struct->unid));
+    write_fd_archive(fd_archive, tar_struct->gid, sizeof(tar_struct->gid));
+    write_fd_archive(fd_archive, tar_struct->size, sizeof(tar_struct->size));
+    write_fd_archive(fd_archive, tar_struct->mtime, sizeof(tar_struct->mtime));
+    write_fd_archive(fd_archive, tar_struct->check, sizeof(tar_struct->check));
+    write_fd_archive(fd_archive, &tar_struct->link, sizeof(tar_struct->link));
+    write_fd_archive(fd_archive, tar_struct->link_name, sizeof(tar_struct->link_name));
+    write_fd_archive(fd_archive, tar_struct->ustar, sizeof(tar_struct->ustar));
+    write_fd_archive(fd_archive, tar_struct->owner, sizeof(tar_struct->owner));
+    write_fd_archive(fd_archive, tar_struct->group, sizeof(tar_struct->group));
+    write_fd_archive(fd_archive, tar_struct->major, sizeof(tar_struct->major));
+    write_fd_archive(fd_archive, tar_struct->minor, sizeof(tar_struct->minor));
+    write_fd_archive(fd_archive, tar_struct->prefix, sizeof(tar_struct->prefix));
 
 }
 
@@ -41,15 +61,8 @@ void complete_file(char* file, int fd_archive, struct tar_s* struct_tar){
 
     my_strcpy(file, struct_tar->name);
 
-    
-    char* value = malloc(sizeof(char)* 9);
-    my_strcpy(convertiseur_base(stat_fils.st_mode & 0777, 8, 8), value);
+    my_strcpy(convertiseur_base(stat_fils.st_mode & 0777, 8, 8), struct_tar->mode);
 
-    printf("test = %s\n", value);
-
-    printf("buggg_2\n");
-    printf("my_strcpy = %s\n" ,my_strcpy(value, struct_tar->mode));
-    printf("buggg\n");
     my_strcpy(convertiseur_base(stat_fils.st_uid & 0777, 8, 8), struct_tar->unid);
     my_strcpy(convertiseur_base(stat_fils.st_gid & 0777, 8, 8), struct_tar->gid);
     my_strcpy(convertiseur_base(stat_fils.st_size & 0777, 8, 12), struct_tar->size);
@@ -83,7 +96,7 @@ void complete_file(char* file, int fd_archive, struct tar_s* struct_tar){
     
     my_strcpy(convertiseur_base(minor(stat_fils.st_rdev), 10, 8), struct_tar->minor);
     
-    print_tar_struct(struct_tar);
+    print_tar_struct(struct_tar, fd_archive);
 
-    write(fd_archive, struct_tar->block, 512);
+    // write(fd_archive, struct_tar->block, 512);
 }

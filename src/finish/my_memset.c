@@ -7,9 +7,9 @@ cette fonction initialise tout la variable a 0;
 void my_memset(void* s, int c, size_t n){
 
     int index = 0;
-printf("potate\n");
+// printf("potate\n");
     char *string = (char *) s;
-printf("cuillere\n");
+// printf("cuillere\n");
     while(index < (int) n){
 // printf("frite\n");
         string[index] = c;

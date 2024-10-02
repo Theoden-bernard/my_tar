@@ -4,7 +4,7 @@
 
 char* convertiseur_base(int base_10, int base, int size){
 
-    int index = size;
+    int index = size - 1;
     // char* result_base = malloc(sizeof(char) * 1);
     char* storage = malloc(sizeof(char) * (size + 1));
     int result = 0;
@@ -18,7 +18,7 @@ char* convertiseur_base(int base_10, int base, int size){
 
     index -= 1;
 
-    printf("patate\n");
+    // printf("patate\n");
 
     while (base_10 != 0)
     {

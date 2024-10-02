@@ -18,7 +18,7 @@ void argument_passer(char* flague, t_commutator* commutator, char** av, int ac){
         char** archive = malloc(sizeof (char *) * (ac + 1));; // j'alloue des chaine de caractères
         archive = init_file_var(av, ".tar", archive);
 
-        printf("archive = %s\n", archive[0]);
+        // printf("archive = %s\n", archive[0]);
 
         // for (int i = 0; i < ac; i++)
         // {

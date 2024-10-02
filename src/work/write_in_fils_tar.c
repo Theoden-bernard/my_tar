@@ -38,11 +38,11 @@ void write_in_fils_tar(char** fils, char* archive){
             stat(fils[index], &stat_fils);
             char* text = malloc(sizeof(char) * stat_fils.st_size);
 
-            printf("index = %d\n", index);
-            printf("fils[index] = %s\n", fils[index]);
+            // printf("index = %d\n", index);
+            // printf("fils[index] = %s\n", fils[index]);
             /*struct_tar = */complete_file(fils[index], fd_archive, struct_tar);
             
-            printf("struct_tar = %s\n", struct_tar->name);
+            // printf("struct_tar = %s\n", struct_tar->name);
 
 
             struct_tar->next = next_struct_tar;
@@ -56,7 +56,7 @@ void write_in_fils_tar(char** fils, char* archive){
             close(fd_fils);
             // printf("text = %s\n", text);
             index += 1;
-            printf("write in file\n");
+            // printf("write in file\n");
             free(text);
             // free(next_struct_tar);
         }

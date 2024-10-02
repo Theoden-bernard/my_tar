@@ -12,7 +12,7 @@ int creat_fils_tar(char** archive, char** fils){
 
     if(check_type_file(archive[0], ".tar") == 1){
 
-        printf("bug\n");
+        // printf("bug\n");
 
         fp = fopen (archive[0], "rw");
         
