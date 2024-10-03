@@ -8,16 +8,16 @@ int test_fils_tar(char** archive, char** fils){
 
         (void)fils;
         // (void)archive;
-        printf("is_a_tar_file = %d\n", is_a_tar_file(archive[0]));
+        // printf("is_a_tar_file = %d\n", is_a_tar_file(archive[0]));
         printf("T flag detected\n");
         struct tar_s* tar;
         tar = malloc(sizeof(*tar));
         int fd_archive = open(archive[0], O_RDONLY);
-        read(fd_archive, tar, sizeof(tar));
+        read(fd_archive, tar, sizeof(struct tar_s));
 
-        printf("name: %s\n", tar->origine_name);
+        printf("name: %s\n", tar->mode);
         tar = tar->next;
-        printf("name: %s\n", tar->origine_name);
+        printf("name: %s\n", tar->name);
 
         close(fd_archive);
         
