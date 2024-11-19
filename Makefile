@@ -1,19 +1,19 @@
-SRC = $(shell find src/ -name "*.c") # va recuperer tous les fichiers .c contenue dans src
-OBJ = $(SRC:.c=.o) # va transformer les fichier .c en fichier .o
+SRC = $(shell find src/ -name "*.c")
+OBJ = $(SRC:.c=.o)
 NAME = my_tar
 COMPILER = gcc
 INCLUDE = -I ./include/
 FLAGS = -Wall -Werror -Wextra
 
-all : $(OBJ) # compile tous y compris le binaire final
+all : $(OBJ)
 	$(COMPILER) $(OBJ) -o $(NAME) $(FLAGS)
 
-re :	fclean all
+re : fclean all
 
 clean:
 	rm -f $(OBJ)
 
-fclean:		clean
+fclean:	clean
 	rm -f $(NAME)
 
 .c.o:
